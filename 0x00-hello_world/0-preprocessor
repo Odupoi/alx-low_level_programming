@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // Name of the C file to preprocess
+    const char* cfile = "example.c";
+
+    // Output file for preprocessed code
+    const char* output = "c";
+
+    // Build the command string to run the preprocessor
+    char command[256];
+    sprintf(command, "cpp -o %s %s", output, cfile);
+
+    // Run the command
+    int status = system(command);
+    if (status != 0) {
+        fprintf(stderr, "Error running preprocessor.\n");
+        exit(1);
+    }
+
+    return 0;
+}
+
