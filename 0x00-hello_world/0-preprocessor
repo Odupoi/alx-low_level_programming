@@ -1,24 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
-    // Name of the C file to preprocess
-    const char* cfile = "example.c";
+int main(void)
+{
+	/* Define the name of the input and output files */
+	const char *inputFile = "$CFILE";
+	const char *outputFile = "c";
 
-    // Output file for preprocessed code
-    const char* output = "c";
+	/* Open the input file for reading */
+	FILE *inFile = fopen(inputFile, "r");
+	if (inFile == NULL)
+	{
+		perror("Error opening input file");
+		exit(1);
+	}
 
-    // Build the command string to run the preprocessor
-    char command[256];
-    sprintf(command, "cpp -o %s %s", output, cfile);
+	/* Open the output file for writing */
+	FILE *outFile = fopen(outputFile, "w");
+	if (outFile == NULL)
+	{
+		perror("Error opening output file");
+		exit(1);
+	}
 
-    // Run the command
-    int status = system(command);
-    if (status != 0) {
-        fprintf(stderr, "Error running preprocessor.\n");
-        exit(1);
-    }
+	/* Run the preprocessor on the input file and write the result to the output file */
+	int c;
+	while ((c = fgetc(inFile)) != EOF)
+	{
+		if (c == '#')
+		{
+			/* This is a preprocessor directive, so we need to read until the end of the line */
+			while ((c = fgetc(inFile)) != EOF && c != '\n')
+			{
+				fputc(c, outFile);
+			}
+			/* Add a newline character to the output to separate directives */
+			fputc('\n', outFile);
+		}
+		else
+		{
+			/* This is not a preprocessor directive, so we just copy the character to the output */
+			fputc(c, outFile);
+		}
+	}
 
-    return 0;
+	/* Close the input and output files */
+	fclose(inFile);
+	fclose(outFile);
+
+	return (0);
 }
 
