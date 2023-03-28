@@ -13,6 +13,7 @@ int i;
 i = 0;
 while (str[i] != '\0')
 {
+_putchar(*(str + i));
 i++;
 }
 write(STDOUT_FILENO, "\n", 1);
