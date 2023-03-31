@@ -8,16 +8,28 @@
 char *leet(char *str)
 {
 int i, j;
-char *leet_chars = "43071";
-char *letters = "aeotlAEOTL";
+char leet_table[256] = {0};
 
+/* Initialize leet table */
+leet_table['a'] = '4';
+leet_table['A'] = '4';
+leet_table['e'] = '3';
+leet_table['E'] = '3';
+leet_table['o'] = '0';
+leet_table['O'] = '0';
+leet_table['t'] = '7';
+leet_table['T'] = '7';
+leet_table['l'] = '1';
+leet_table['L'] = '1';
+
+/* Apply leet encoding */
 for (i = 0; str[i]; i++)
 {
-for (j = 0; letters[j]; j++)
+for (j = 0; j < 256; j++)
 {
-if (str[i] == letters[j])
+if (str[i] == j && leet_table[j] != 0)
 {
-str[i] = leet_chars[j / 5] + ((j % 5) / 4);
+str[i] = leet_table[j];
 break;
 }
 }
@@ -25,4 +37,5 @@ break;
 
 return (str);
 }
+
 
