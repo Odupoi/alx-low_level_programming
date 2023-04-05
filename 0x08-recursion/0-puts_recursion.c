@@ -15,5 +15,5 @@ putchar('\n'); /* print a new line character */
 return;
 }
 putchar(*s); /* print the current character */
-_puts_recursion(s + 1); 
+_puts_recursion(s + 1);
 }
