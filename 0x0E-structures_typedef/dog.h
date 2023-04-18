@@ -27,6 +27,7 @@ char *owner;
  * age, and owner name.
  */
 void init_dog(struct dog *my_dog, char *name, float age, char *owner);
+void print_dog(struct dog *d);
 
 #endif /* DOG_H */
 
