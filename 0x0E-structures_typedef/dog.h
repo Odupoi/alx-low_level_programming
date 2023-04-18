@@ -21,14 +21,14 @@ char *owner;
  * @my_dog: Pointer to dog struct
  * @name: Dog name string
  * @age: Dog age float
- * @owner: Dog owner name string
+ * @own`er: Dog owner name string
  *
  * Description: This function initializes a dog struct with a given name,
  * age, and owner name.
  */
 void init_dog(struct dog *my_dog, char *name, float age, char *owner);
 void print_dog(struct dog *d);
-
+dog_t *new_dog(char *name, float age, char *owner);
 #endif /* DOG_H */
 
 
