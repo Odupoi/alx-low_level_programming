@@ -4,7 +4,7 @@
 /**
  * print_name - prints a name
  * @name: pointer to the name to be printed
- * @f: function pointer to a function that takes a char* argument and returns void
+ * @f: function pointer to a functio
  *
  * Return: void
  */
@@ -21,5 +21,5 @@ f(name);
  */
 void print_to_console(char *name)
 {
-    printf("Name: %s\n", name);
+printf("Name: %s\n", name);
 }
